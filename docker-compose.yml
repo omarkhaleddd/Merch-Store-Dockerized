@@ -5,7 +5,7 @@ services:
     container_name: client_container
     stdin_open: true
     ports:
-      - "3000:3000"
+      - "5173:5173"
     networks:
       - ecommerce-app
     volumes:
@@ -16,14 +16,14 @@ services:
     container_name: dashboard_container
     stdin_open: true
     ports:
-      - "3001:3001"
+      - "3000:3000"
     networks:
       - ecommerce-app
     volumes:
       - ./dashboard:/app
       - /app/node_modules
   user_service:
-    build: ./userService
+    build: ./user_service
     container_name: user_service_container
     ports:
       - "5002:5002"
@@ -35,7 +35,7 @@ services:
     depends_on:
       - user_db
     volumes:
-      - ./userService:/app
+      - ./user_service:/app
       - /app/node_modules
   user_db:
     image: mongo:3.6.19-xenial
@@ -46,7 +46,7 @@ services:
     volumes:
       - user-volume:/data/db
   product_service:
-    build: ./productService
+    build: ./product_service
     container_name: product_service_container
     ports:
       - "5000:5000"
@@ -69,7 +69,7 @@ services:
     volumes:
       - product-volume:/data/db
   auth_service:
-    build: ./authService
+    build: ./auth_service
     container_name: auth_service_container
     ports:
       - "5001:5001"
@@ -84,7 +84,7 @@ services:
       - ./auth_service:/app
       - /app/node_modules
   order_service:
-    build: ./orderService
+    build: ./order_service
     container_name: order_service_container
     ports:
       - "5003:5003"
