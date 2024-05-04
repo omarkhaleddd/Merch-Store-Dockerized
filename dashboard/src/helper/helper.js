@@ -21,16 +21,16 @@ export const addProduct = async ({ title, description, category, price }) => {
     formData.append("description",description)
     formData.append("category",category)
     formData.append("price",price)
-    console.log(Object.fromEntries(formData));
-    if (!(Cookies.get('authToken') !== undefined)){
-        return null
-    }
+    console.log("data : " , Object.fromEntries(formData));
+    // if (!(Cookies.get('authToken') !== undefined)){
+    //     return null
+    // }
     console.log(1);
-    const authToken = Cookies.get('authToken') 
-    const response = await axios.post("http://localhost:4000/product/addProduct", formData, {
+    // const authToken = Cookies.get('authToken') 
+    const response = await axios.post("http://localhost:5000/product/addProduct", formData, {
         headers: {
             'content-type': 'multipart/form-data',
-            "Authorization" : "Bearer " + authToken
+            // "Authorization" : "Bearer " + authToken
         }
     });
     console.log(response);
