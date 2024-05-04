@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 async function connectToDatabase() {
   try {
     console.log("Connecting to MongoDB...");
-    await mongoose.connect("mongodb://user_db:27017/user_db", {
+    await mongoose.connect("mongodb://order_db:27017/order_db", {
       useNewUrlParser: true,
     });
     console.log("Connected to MongoDB");

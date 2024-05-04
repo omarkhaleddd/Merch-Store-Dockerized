@@ -68,21 +68,6 @@ services:
       - ecommerce-app
     volumes:
       - product-volume:/data/db
-  auth_service:
-    build: ./auth_service
-    container_name: auth_service_container
-    ports:
-      - "5001:5001"
-    networks:
-      - ecommerce-app
-    links:
-      - user_db
-    restart: on-failure
-    depends_on:
-      - user_db
-    volumes:
-      - ./auth_service:/app
-      - /app/node_modules
   order_service:
     build: ./order_service
     container_name: order_service_container

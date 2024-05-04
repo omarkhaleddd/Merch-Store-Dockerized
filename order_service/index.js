@@ -2,8 +2,7 @@ import dotenv from 'dotenv'
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser';
-import userRoutes from "./route/user.js"
-import authRoutes from "./route/auth.js"
+import orderRoutes from "./route/order.js"
 
 import cors from "cors";
 import helmet from "helmet";
@@ -13,7 +12,7 @@ dotenv.config()
 
 const app = express();
 
-const PORT = process.env.PORT || 10000;
+const PORT = 5003;
 
 app.use(cookieParser());
 
@@ -34,10 +33,8 @@ app.use(cors( {
 // app.listen(PORT, () => { 
 //   console.log(`service is running on port ${PORT}`)
 // }); 
-app.use("/user",userRoutes)
-app.use("/auth",authRoutes)
+app.use("/order",orderRoutes)
 
-console.log("hi");
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
