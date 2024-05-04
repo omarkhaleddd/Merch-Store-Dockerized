@@ -94,7 +94,7 @@ export const ShowCart = ({ cartItems , totalQuantity , totalAmount  }) => {
               <div className="ms-2 p-2" key={res.id}>
                 <div className="row rounded-3 d-flex h-50 p-2 border border-2 shadow-sm">
                   <div className="col-4 " >
-                    <img src={`http://localhost:4000/uploads/${res.images[0]}`} className="w-100 " alt="" />
+                    <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/uploads/${res.images[0]}`} className="w-100 " alt="" />
                   </div>
                   <div className="col-8  ">
                     <div className="text-truncate">Title: {res.title}</div>
@@ -179,7 +179,7 @@ export const ShowProducts = ({ results }) => {
               <div className="col-xl-3 col-lg-4 col-x col-md-6 g-4 " key={res.id}>
                 <div className="card h-100 text-center p-4  border-2 shadow-sm">
                   <img
-                    src={`http://localhost:4000/uploads/${res.images[0]}`}
+                    src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/uploads/${res.images[0]}`}
                     className="card-img-top p-sm-5"
                     height={250}
                     alt={res.title}
@@ -213,7 +213,7 @@ export const ShowProduct = ({ product }) => {
   return (
     <>
       <div className="col-md-6 text-center">
-        <img src={`http://localhost:4000/uploads/${product.images[0]}`} alt={product.title} height={400} width={400} />
+        <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/uploads/${product.images[0]}`} alt={product.title} height={400} width={400} />
       </div>
       <div className="col-md-6">
         <h4 className="text-uppercase text-black-50">{product.category}</h4>
@@ -239,15 +239,16 @@ export const ShowProduct = ({ product }) => {
 };
 
 export const getProducts = async () => {
-  const response = await fetch("http://localhost:4000/product/");
+  const response = await fetch(`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/`);
   const results = await response.json();
   console.log(results);
   return results;
 };
 
 export const getProduct = async ({ params }) => {
+  
   const response = await fetch(
-    `http://localhost:4000/product/getProduct/${params.id}`
+    `http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/getProduct/${params.id}`
   );
   const result = await response.json();
   return result;

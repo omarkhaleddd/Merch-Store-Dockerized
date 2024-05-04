@@ -11,7 +11,7 @@ export const SignupPost = async ({
         address: address,
     }
     console.log(userData);
-    const response = await axios.post('http://localhost:4000/auth/register',userData);
+    const response = await axios.post(`http://localhost:${import.meta.env.VITE_USER_SERVICE_PORT}/auth/register`,userData);
     return response
 };
 
@@ -49,7 +49,7 @@ export const Auth = async ({ email, password }) => {
         password: password
     }
     console.log(userData);
-    const response = await axios.post("http://localhost:4000/auth/login", userData);
+    const response = await axios.post(`http://localhost:${import.meta.env.VITE_USER_SERVICE_PORT}/auth/login`, userData);
     console.log(response);
     return response
 }
@@ -58,7 +58,7 @@ export const checkoutPost = async ({ userData }) => {
     console.log(userData);
     const orderData = userData
     console.log(orderData);
-    const response = await axios.post('http://localhost:4000/order/addOrder/',orderData);
+    const response = await axios.post(`http://localhost:${import.meta.env.VITE_ORDER_SERVICE_PORT}/order/addOrder/`,orderData);
     console.log(response);
     return response
 };
