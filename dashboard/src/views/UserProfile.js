@@ -16,7 +16,7 @@
 
 */
 import { useEffect, useRef, useState } from "react";
-import { addProduct, handleFiles } from "../helper/helper";
+import { addProduct, getUsers, handleFiles } from "../helper/helper";
 import React from "react";
 import { Link, useFetcher, useNavigate } from "react-router-dom";
 import "./UserProfile.css";
@@ -55,6 +55,11 @@ export async function addProductAction({ request }) {
       throw new Error("There was a problem in adding the product " + e);
     }
   }
+}
+
+export async function getUsersLoader({params}) {
+  const users = await getUsers();
+  return {users};
 }
 
 

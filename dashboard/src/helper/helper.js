@@ -11,6 +11,13 @@ export const handleFiles = ({ files }) => {
     return false
 }
 
+export const getUsers = async () => {
+    const response = await fetch("http://localhost:4000/user/");
+    const results = await response.json();
+    console.log(results);
+    return results;
+};
+
 export const addProduct = async ({ title, description, category, price }) => {
 
     const formData = new FormData();
