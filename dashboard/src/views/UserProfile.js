@@ -16,7 +16,7 @@
 
 */
 import { useEffect, useRef, useState } from "react";
-import { addProduct, getUsers, handleFiles } from "../helper/helper";
+import { addProduct, handleFiles } from "../helper/helper";
 import React from "react";
 import { Link, useFetcher, useNavigate } from "react-router-dom";
 import "./UserProfile.css";
@@ -41,7 +41,9 @@ export async function addProductAction({ request }) {
   const { _action, ...values } = Object.fromEntries(data);
   if (_action === "addProductAction") {
     try {
-      console.log(values);
+
+
+      console.log("values : ",values);
       console.log(data.getAll("image"));
       const resp = addProduct({
         title: values.title,
@@ -55,11 +57,6 @@ export async function addProductAction({ request }) {
       throw new Error("There was a problem in adding the product " + e);
     }
   }
-}
-
-export async function getUsersLoader({params}) {
-  const users = await getUsers();
-  return {users};
 }
 
 

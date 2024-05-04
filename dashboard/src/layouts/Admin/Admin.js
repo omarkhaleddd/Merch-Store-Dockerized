@@ -86,17 +86,16 @@ function Admin(props) {
           <Route path={prop.path} element={prop.component} loader={prop.loader} key={key} exact />        
         );
       }
-      else if (prop.layout === "/admin" && prop.path === "/add-product") {
+      else if (prop.layout === "/admin" && prop.path === "/user-profile") {
         console.log(prop);
         return (
           <Route path={prop.path} element={prop.component} action={prop.action} key={key} exact />        
         );
-      }else if (prop.layout === "/admin" && prop.path === "/get-users") {
-        console.log(prop);
+      }else if (prop.layout === "/admin") {
         return (
-          <Route path={prop.path} element={prop.component} loader={prop.loader} key={key} exact />        
+          <Route path={prop.path} element={prop.component} key={key} exact />
         );
-      }
+      } 
       else {
         return null;
       }

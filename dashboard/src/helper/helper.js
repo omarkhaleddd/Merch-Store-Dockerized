@@ -11,13 +11,6 @@ export const handleFiles = ({ files }) => {
     return false
 }
 
-export const getUsers = async () => {
-    const response = await fetch("http://localhost:4000/user/");
-    const results = await response.json();
-    console.log(results);
-    return results;
-};
-
 export const addProduct = async ({ title, description, category, price }) => {
 
     const formData = new FormData();
@@ -28,16 +21,16 @@ export const addProduct = async ({ title, description, category, price }) => {
     formData.append("description",description)
     formData.append("category",category)
     formData.append("price",price)
-    console.log(Object.fromEntries(formData));
-    if (!(Cookies.get('authToken') !== undefined)){
-        return null
-    }
+    console.log("data : " , Object.fromEntries(formData));
+    // if (!(Cookies.get('authToken') !== undefined)){
+    //     return null
+    // }
     console.log(1);
-    const authToken = Cookies.get('authToken') 
-    const response = await axios.post("http://localhost:4000/product/addProduct", formData, {
+    // const authToken = Cookies.get('authToken') 
+    const response = await axios.post("http://localhost:5000/product/addProduct", formData, {
         headers: {
             'content-type': 'multipart/form-data',
-            "Authorization" : "Bearer " + authToken
+            // "Authorization" : "Bearer " + authToken
         }
     });
     console.log(response);

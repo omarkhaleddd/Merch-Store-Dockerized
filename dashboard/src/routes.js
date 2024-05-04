@@ -21,16 +21,7 @@ import UserProfile from "views/UserProfile.js";
 import { loader as orderLoader } from "views/TableList";
 var routes = [
   {
-    path: "/add-product",
-    name: "Adding Product",
-    rtlName: "اضافه منتج",
-    icon: "tim-icons icon-single-02",
-    component: <UserProfile />,
-    layout: "/admin",
-    action: addProductAction
-  },
-  {
-    path: "/get-users",
+    path: "/user-profile",
     name: "Adding Product",
     rtlName: "اضافه منتج",
     icon: "tim-icons icon-single-02",
