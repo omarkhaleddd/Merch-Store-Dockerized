@@ -30,12 +30,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
 import { addProductAction } from "views/UserProfile";
-
+import UserData from "views/UserData.js"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/admin/*" element={<AdminLayout />} action={addProductAction} />
+      <Route path="/admin/*" element={<UserData />} />
+
       <Route path="/rtl/*" element={<RTLLayout />} />
       <Route
         path="*"

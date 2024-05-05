@@ -26,13 +26,6 @@ app.use(cors( {
   credentials: true,
 } ));
 
-// app.get('/', (req, res) => { 
-//   res.json("a7aaa"); 
-// })
-
-// app.listen(PORT, () => { 
-//   console.log(`service is running on port ${PORT}`)
-// }); 
 app.use("/order",orderRoutes)
 
 

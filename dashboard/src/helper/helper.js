@@ -46,3 +46,11 @@ export const getOrders = async () => {
     return result;
   };
   
+  export const getUsers = async () => {
+    const response = await fetch(
+      `http://localhost:5002/user/getUsers`
+    )
+    console.log(response);
+    const result = await response.json();
+    return result;
+  };

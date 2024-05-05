@@ -18,6 +18,7 @@
 import TableList from "views/TableList.js";
 import { addProductAction } from "views/UserProfile";
 import UserProfile from "views/UserProfile.js";
+import UserData from "views/UserData.js"
 import { loader as orderLoader } from "views/TableList";
 var routes = [
   {
@@ -28,6 +29,14 @@ var routes = [
     component: <UserProfile />,
     layout: "/admin",
     action: addProductAction
+  },
+  {
+    path: "/user-data",
+    name: "Users",
+    rtlName: "المستخدمين",
+    icon: "tim-icons icon-single-02",
+    component: <UserData />,
+    layout: "/admin",
   },
 ];
 export default routes;
