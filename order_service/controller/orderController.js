@@ -32,10 +32,11 @@ export const addOrder = async (req, res) => {
     if(user){
         return res.status(404).json({ message: "user already have cart" });
     }
-    for (const productId of products) {
+    for (const orderItem of products) {
         
       const orderDetail = new OrderDetailsModel({
-        product: productId,
+        productId: orderItem.productId,
+        quantity: orderItem.quantity
       });
       orderDetails.push(orderDetail);
     }
