@@ -27,9 +27,14 @@ export async function signupAction({ request }) {
         const userID = res.data.userID;
         AuthService.login({ authToken, userID });
         return redirect("/")
-      } catch (e) {
-           window.alert("Email already exists")
-           return null
+      } catch (error) {
+        console.log(error.message);
+        if (error.message === "Network Error") {
+          error.message = "User Service is not working!"
+        }
+        console.log(error.message);
+        window.alert("Error in sign-up: " + error.message);
+        return null
       }
   }
 }

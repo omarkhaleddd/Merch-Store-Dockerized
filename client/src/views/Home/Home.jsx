@@ -11,7 +11,8 @@ export async function loader() {
 
 const Home = () => {
 
-    const {products} = useLoaderData()
+    const { products } = useLoaderData()
+    console.log(products.message);
 
     return (
         <div className="hero">
@@ -24,7 +25,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <ProductList products={products} />
+            {products === 500 ?
+                <div className="text-center fs-2 text-danger mt-4">
+                    <p>The Product service is not working</p>
+                </div> : <ProductList products={products} />}
+
         </div>
     )
 }

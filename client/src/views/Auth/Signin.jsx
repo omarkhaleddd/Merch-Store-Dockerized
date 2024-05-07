@@ -33,7 +33,12 @@ export async function signinAction({ request }) {
         return redirect("http://localhost:3000/admin/dashboard/")
       }else{return redirect("/")}
     } catch (error) {
-      window.alert("Error in sign-in:", error);
+      console.log(error.message);
+      if (error.message === "Network Error") {
+        error.message = "User Service is not working!"
+      }
+      console.log(error.message);
+      window.alert("Error in sign-in: " + error.message);
       return null
     }
   }

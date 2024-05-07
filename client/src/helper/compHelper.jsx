@@ -9,6 +9,7 @@ import { addItem, delItem } from "../redux/product/productSlice";
 import Cart from "../views/Cart/Cart";
 import AuthService from "../services/AuthService";
 import { checkoutPost } from "./helper";
+
 export const LoadingProducts = () => {
   return (
     <>
@@ -174,26 +175,33 @@ export const ShowProducts = ({ results }) => {
               Women's Clothing
             </button>
           </div>
-          {products.map((res) => {
-            return (
-              <div className="col-xl-3 col-lg-4 col-x col-md-6 g-4 " key={res.id}>
-                <div className="card h-100 text-center p-4  border-2 shadow-sm">
-                  <img
-                    src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/uploads/${res.images[0]}`}
-                    className="card-img-top p-sm-5"
-                    height={250}
-                    alt={res.title}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title mb-0 text-truncate">{res.title}</h5>
-                    <p className="card-text lead fw-bold">{res.price} EGP</p>
-                    { !AuthService.isAuthenticated() && <Link to={`/signup`} className="btn btn-outline-dark"> Buy Now </Link>}
-                    { AuthService.isAuthenticated() && <Link to={`/products/${res._id}`} className="btn btn-outline-dark"> Buy Now </Link>}
+          {products.length === 0 ?
+              <p className="text-center fs-2 text-dark">
+                There are no products to show
+              </p>
+              :
+              products.map((res) => {
+                return (
+                  <div className="col-xl-3 col-lg-4 col-x col-md-6 g-4 " key={res.id}>
+                    <div className="card h-100 text-center p-4  border-2 shadow-sm">
+                      <img
+                        src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/app/upload/${res.images[0]}`}
+                        className="card-img-top p-sm-5"
+                        height={250}
+                        alt={res.title}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title mb-0 text-truncate">{res.title}</h5>
+                        <p className="card-text lead fw-bold">{res.price} EGP</p>
+                        { !AuthService.isAuthenticated() && <Link to={`/signup`} className="btn btn-outline-dark"> Buy Now </Link>}
+                        { AuthService.isAuthenticated() && <Link to={`/products/${res._id}`} className="btn btn-outline-dark"> Buy Now </Link>}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+          })
+          }
+          
         </>
       );
 };
@@ -213,7 +221,7 @@ export const ShowProduct = ({ product }) => {
   return (
     <>
       <div className="col-md-6 text-center">
-        <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/uploads/${product.images[0]}`} alt={product.title} height={400} width={400} />
+        <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/app/upload/${product.images[0]}`} alt={product.title} height={400} width={400} />
       </div>
       <div className="col-md-6">
         <h4 className="text-uppercase text-black-50">{product.category}</h4>
@@ -239,17 +247,28 @@ export const ShowProduct = ({ product }) => {
 };
 
 export const getProducts = async () => {
-  const response = await fetch(`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/`);
-  const results = await response.json();
-  console.log(results);
-  return results;
+  try {
+    const response = await fetch(`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/`);
+    const results = await response.json();
+    console.log(results);
+    return results;
+  } catch (error) {
+    console.log(error);
+    if (error.message === "Failed to fetch") {
+      return 500;
+    }
+    return error
+  }
 };
 
 export const getProduct = async ({ params }) => {
-  
-  const response = await fetch(
-    `http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/getProduct/${params.id}`
-  );
-  const result = await response.json();
-  return result;
+  try {
+    const response = await fetch(
+      `http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/product/getProduct/${params.id}`
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error
+  }
 };

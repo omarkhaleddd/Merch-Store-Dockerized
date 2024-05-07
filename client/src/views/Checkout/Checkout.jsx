@@ -21,14 +21,19 @@ export async function checkoutFunction({request}) {
     try 
     {
       const userData = IOrderData()
-      const resp = checkoutPost({userData : userData})
+      const resp = await checkoutPost({userData : userData})
+      console.log(resp.statusText);
       window.alert("Order Placed")
-      console.log(resp);
       localStorage.clear()
-      window.location.reload()
+      // window.location.reload()
       return resp
     } catch (error) {
       console.log(error);
+      if (error.message === "Network Error") {
+        error.message = "Order Service is not working!"
+      }
+      window.alert("Error placing the Order : " + error.message)
+      return error
     }
   }
 }

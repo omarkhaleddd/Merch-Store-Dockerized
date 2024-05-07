@@ -5,7 +5,7 @@ async function connectToDatabase() {
   try {
     console.log("Connecting to MongoDB...");
     await mongoose.connect("mongodb://product_db:27017/product_db", {
-      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
     console.log("Connected to MongoDB");
   } catch (error) {
