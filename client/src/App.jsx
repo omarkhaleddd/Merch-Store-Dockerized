@@ -23,6 +23,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
+      
       <Cart />
       <Outlet /> 
       <Footer />

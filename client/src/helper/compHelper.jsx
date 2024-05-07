@@ -272,3 +272,21 @@ export const getProduct = async ({ params }) => {
     return error
   }
 };
+
+export const getWeather = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost:${import.meta.env.VITE_WEATHER_SERVICE_PORT}/api/weather`
+    );
+    const results = await response.json();
+    console.log(results);
+    return results;
+  } catch (error) {
+    console.log(error);
+    if (error.message === "Failed to fetch") {
+      return 500;
+    }
+    return error
+  }
+};
+
