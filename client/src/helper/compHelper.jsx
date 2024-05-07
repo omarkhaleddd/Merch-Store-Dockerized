@@ -146,7 +146,7 @@ export const ShowProducts = ({ results }) => {
         setProducts(updatedList);
         console.log(products);
       };
-
+      console.log(products);
       return (
         <>
           <div className="buttons d-flex justify-content-center mb-5">
