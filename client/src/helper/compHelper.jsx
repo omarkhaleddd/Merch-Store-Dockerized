@@ -185,7 +185,7 @@ export const ShowProducts = ({ results }) => {
                   <div className="col-xl-3 col-lg-4 col-x col-md-6 g-4 " key={res.id}>
                     <div className="card h-100 text-center p-4  border-2 shadow-sm">
                       <img
-                        src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/app/upload/${res.images[0]}`}
+                        src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/upload/${res.images[0]}`}
                         className="card-img-top p-sm-5"
                         height={250}
                         alt={res.title}
@@ -221,7 +221,7 @@ export const ShowProduct = ({ product }) => {
   return (
     <>
       <div className="col-md-6 text-center">
-        <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/app/upload/${product.images[0]}`} alt={product.title} height={400} width={400} />
+        <img src={`http://localhost:${import.meta.env.VITE_PRODUCT_SERVICE_PORT}/upload/${product.images[0]}`} alt={product.title} height={400} width={400} />
       </div>
       <div className="col-md-6">
         <h4 className="text-uppercase text-black-50">{product.category}</h4>

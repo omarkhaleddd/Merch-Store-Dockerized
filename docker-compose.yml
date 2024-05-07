@@ -70,6 +70,7 @@ services:
     volumes:
       - ./product_service:/app
       - /app/node_modules
+      - ./product_service/upload:/app/upload
   product_db:
     image: mongo:3.6.19-xenial
     ports:
