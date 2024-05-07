@@ -22,6 +22,16 @@ services:
     volumes:
       - ./dashboard:/app
       - /app/node_modules
+  weather_service:
+    build: ./weather_service
+    container_name: weather_service_container
+    ports:
+      - "5001:5001"
+    networks:
+      - ecommerce-app
+    volumes:
+      - ./weather_service:/app
+      - /app/node_modules
   user_service:
     build: ./user_service
     container_name: user_service_container
