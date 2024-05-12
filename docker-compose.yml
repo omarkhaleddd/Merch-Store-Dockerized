@@ -1,0 +1,114 @@
+version: "3"
+services:
+  client:
+    build: ./client
+    container_name: client_container
+    stdin_open: true
+    ports:
+      - "5173:5173"
+    networks:
+      - ecommerce-app
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+  dashboard:
+    build: ./dashboard
+    container_name: dashboard_container
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - ecommerce-app
+    volumes:
+      - ./dashboard:/app
+      - /app/node_modules
+  weather_service:
+    build: ./weather_service
+    container_name: weather_service_container
+    ports:
+      - "5001:5001"
+    networks:
+      - ecommerce-app
+    volumes:
+      - ./weather_service:/app
+      - /app/node_modules
+  user_service:
+    build: ./user_service
+    container_name: user_service_container
+    ports:
+      - "5002:5002"
+    networks:
+      - ecommerce-app
+    links:
+      - user_db
+    restart: on-failure
+    depends_on:
+      - user_db
+    volumes:
+      - ./user_service:/app
+      - /app/node_modules
+  user_db:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27017:27017"
+    networks:
+      - ecommerce-app
+    volumes:
+      - user-volume:/data/db
+  product_service:
+    build: ./product_service
+    container_name: product_service_container
+    ports:
+      - "5000:5000"
+    networks:
+      - ecommerce-app
+    links:
+      - product_db
+    restart: on-failure
+    depends_on:
+      - product_db
+    volumes:
+      - ./product_service:/app
+      - /app/node_modules
+      - ./product_service/upload:/app/upload
+  product_db:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27018:27017"
+    networks:
+      - ecommerce-app
+    volumes:
+      - product-volume:/data/db
+  order_service:
+    build: ./order_service
+    container_name: order_service_container
+    ports:
+      - "5003:5003"
+    networks:
+      - ecommerce-app
+    links:
+      - order_db
+    restart: on-failure
+    depends_on:
+      - order_db
+    volumes:
+      - ./order_service:/app
+      - /app/node_modules
+  order_db:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27019:27017"
+    networks:
+      - ecommerce-app
+    volumes:
+      - order-volume:/data/db
+networks:
+  ecommerce-app:
+    driver: bridge
+volumes:
+  user-volume:
+    driver: local
+  product-volume:
+    driver: local
+  order-volume:
+    driver: local
