@@ -22,40 +22,6 @@ Before running the application, ensure you have the following installed:
 - Docker: [Install Docker](https://docs.docker.com/get-docker/)
 - Docker Compose: [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-### 
-Certainly! Here's the README formatted as code:
-
-markdown
-Copy code
-# MerchStore Microservices Project
-
-## Overview
-
-This project is a demonstration of a MerchStore application built using microservices architecture, Docker containers, and Docker Compose for orchestration. The MerchStore project is designed to showcase how a typical e-commerce platform can be structured using microservices. Each microservice is responsible for a specific functionality of the application, such as product catalog, user management, cart management, and order processing.
-
-## Technologies Used
-
-- Microservices Framework: Node.js with Express
-- Database: MongoDB
-- Containerization: Docker
-- Orchestration: Docker Compose
-- Frontend: React.js
-- API Gateway: NGINX
-- Authentication: JWT Tokens
-- Testing: Jest, Mocha, Chai
-- CI/CD: GitHub Actions
-- Monitoring: Prometheus, Grafana
-- Logging: ELK Stack (Elasticsearch, Logstash, Kibana)
-- Container Registry: Docker Hub
-
-## Setup Instructions
-
-### Prerequisites
-
-Before running the application, ensure you have the following installed:
-
-- Docker: [Install Docker](https://docs.docker.com/get-docker/)
-- Docker Compose: [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installation
 
